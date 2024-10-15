@@ -1,198 +1,178 @@
-import 'package:flutter/material.dart'; // Mengimpor paket Material Design
-// import 'home.dart'; // Mengimpor layar Home (dikomentari untuk saat ini)
+import 'package:flutter/material.dart';
+import 'home.dart';
 
-/// Kelas yang merepresentasikan layar login aplikasi
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key}); // Konstruktor kelas
+  const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState(); // Membuat state untuk layar login
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-/// State untuk layar login
 class _LoginScreenState extends State<LoginScreen> {
-  // Kontroler untuk mengambil input dari pengguna
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   void dispose() {
-    // Menghapus kontroler saat layar tidak lagi digunakan
     _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
-  // Fungsi untuk menangani proses login (dikomentari untuk saat ini)
-  // void _handleLogin() {
-  //   String username = _usernameController.text;
-  //   String password = _passwordController.text;
+  void _handleLogin() {
+    String username = _usernameController.text;
+    String password = _passwordController.text;
 
-  //   if (username.isEmpty || password.isEmpty) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       const SnackBar(
-  //         content: Text('Username atau Password tidak boleh kosong'),
-  //       ),
-  //     );
-  //   } else {
-  //     if (username == 'admin' && password == '1234') {
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => HomeScreen()),
-  //       );
-  //     } else {
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(
-  //           content: Text('Username atau Password salah'),
-  //         ),
-  //       );
-  //     }
-  //   }
-  // }
+    if (username.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Username atau Password tidak boleh kosong'),
+        ),
+      );
+    } else {
+      if (username == 'admin' && password == '1234') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Username atau Password salah'),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme; // Mendapatkan skema warna dari tema
+    final colorScheme = Theme.of(context).colorScheme;
 
     return Scaffold(
-      backgroundColor: colorScheme.primary, // Mengatur warna latar belakang
+      backgroundColor: colorScheme.primary,
       body: SingleChildScrollView(
-        // Menggunakan SingleChildScrollView untuk mencegah overflow pada layar kecil
-        padding: const EdgeInsets.all(48.0), // Padding untuk konten
+        // Scroll to avoid overflow on smaller screens
+        padding: const EdgeInsets.all(48.0),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const SizedBox(height: 80), // Ruang di atas untuk pemusatan yang lebih baik
+              const SizedBox(height: 80), // Top padding for better centering
               RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'La', // Teks "La"
+                      text: 'La',
                       style: TextStyle(
-                        fontSize: 24, // Ukuran font untuk "La"
+                        fontSize: 24, // Increased for better visibility
                         fontWeight: FontWeight.bold,
-                        color: colorScheme.secondary, // Warna teks berdasarkan skema warna
+                        color: colorScheme.secondary,
                       ),
                     ),
                     TextSpan(
-                      text: 'Booking', // Teks "Booking"
+                      text: 'Booking',
                       style: TextStyle(
-                        fontSize: 24, // Ukuran font untuk "Booking"
+                        fontSize: 24, // Consistent font size
                         fontWeight: FontWeight.bold,
-                        color: colorScheme.tertiary, // Warna teks berdasarkan skema warna
+                        color: colorScheme.tertiary,
                       ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 24), // Ruang antara judul dan teks sambutan
+              const SizedBox(height: 24),
               const Text(
-                'Selamat Datang!!', // Teks sambutan
+                'Selamat Datang!!',
                 style: TextStyle(
-                    fontSize: 64, // Ukuran font
+                    fontSize:
+                        64, // Reduced for better layout on smaller screens
                     fontWeight: FontWeight.w900,
                     height: 1.15),
               ),
-              const SizedBox(height: 64), // Ruang antara teks sambutan dan kolom input
+              const SizedBox(height: 64),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Text(
-                    'Username', // Label untuk input username
+                    'Username',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         height: 1.15),
                   ),
-                  const SizedBox(height: 4), // Ruang antara label dan TextField
+                  const SizedBox(
+                      height: 4), // Space between label and TextField
                   TextField(
-                    controller: _usernameController, // Menghubungkan TextField dengan kontroler
+                    controller: _usernameController,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(), // Border untuk TextField
-                      hintText: 'NPM', // Placeholder
+                      border: OutlineInputBorder(),
+                      hintText: 'NPM',
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey, // Warna border saat fokus
+                          color: Colors.grey,
                         ),
                       ),
                     ),
-                    cursorColor: colorScheme.secondary, // Warna kursor
+                    cursorColor: colorScheme.secondary,
                     style: const TextStyle(
-                      fontSize: 16, // Ukuran teks dalam TextField
+                      fontSize: 16,
                       fontWeight: FontWeight.w300,
-                    ),
+                    ), // Text size in TextField
                   ),
-                  const SizedBox(height: 14), // Ruang antara username dan password
+                  const SizedBox(height: 14),
                   const Text(
-                    'Password', // Label untuk input password
+                    'Password',
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         height: 1.15),
                   ),
-                  const SizedBox(height: 8), // Ruang antara label dan TextField
+                  const SizedBox(
+                      height: 8), // Space between label and TextField
                   TextField(
-                    controller: _passwordController, // Menghubungkan TextField dengan kontroler
+                    controller: _passwordController,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(), // Border untuk TextField
-                      hintText: 'Password', // Placeholder
+                      border: OutlineInputBorder(),
+                      hintText: 'Password',
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.grey, // Warna border saat fokus
+                          color: Colors.grey,
                         ),
                       ),
                     ),
-                    cursorColor: colorScheme.secondary, // Warna kursor
-                    obscureText: true, // Menyembunyikan input password
+                    cursorColor: colorScheme.secondary,
+                    obscureText: true, // Hide password input
                     style: const TextStyle(
-                      fontSize: 16, // Ukuran teks dalam TextField
+                      fontSize: 16,
                       fontWeight: FontWeight.w300,
-                    ),
+                    ), // Text size in TextField
                   ),
                 ],
               ),
-              const SizedBox(height: 48), // Ruang antara field dan tombol
+              const SizedBox(height: 48), // Space between fields and buttons
               Center(
                 child: Column(
                   children: [
-                    SizedBox(
-                      width: double.infinity, // Membuat tombol mengambil lebar penuh
+                    Container(
+                      width: double
+                          .infinity, // Make the button take full width of the container
                       child: ElevatedButton(
-                        onPressed: () {
-                          // Aksi saat tombol Login ditekan
-                        },
+                        onPressed: _handleLogin,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: colorScheme.secondary, // Warna latar belakang tombol
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15), // Padding tombol
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.zero, // Mengatur radius border menjadi 0
+                          backgroundColor: colorScheme.secondary,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40, vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.zero, // Set border radius to 0
                           ),
                         ),
                         child: Text(
-                          'Login', // Teks pada tombol Login
-                          style: TextStyle(fontSize: 18, color: colorScheme.tertiary), // Ukuran dan warna teks tombol
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16), // Ruang antara tombol Login dan Sign Up
-                    SizedBox(
-                      width: double.infinity, // Membuat tombol mengambil lebar penuh
-                      child: OutlinedButton(
-                        onPressed: () {
-                          // Aksi saat tombol Sign Up ditekan
-                        },
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Colors.black), // Warna border
-                          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15), // Padding tombol
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.zero, // Mengatur radius border menjadi 0
-                          ),
-                        ),
-                        child: const Text(
-                          'Sign Up', // Teks pada tombol Sign Up
-                          style: TextStyle(fontSize: 18, color: Colors.black), // Ukuran dan warna teks tombol
+                          'Login',
+                          style: TextStyle(
+                              fontSize: 18, color: colorScheme.tertiary),
                         ),
                       ),
                     ),

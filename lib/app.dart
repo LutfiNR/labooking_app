@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart'; // Mengimpor paket Material Design
+import 'package:labooking_app/screen/home.dart';
 import 'package:labooking_app/screen/login.dart'; // Mengimpor layar login dari aplikasi LaBooking
 
 // Kelas utama aplikasi
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true, // Mengaktifkan penggunaan Material Design versi 3
       ),
-      home: const LoginScreen(), // Menentukan layar awal aplikasi
+      home: const HomeScreen(), // Menentukan layar awal aplikasi
     );
   }
 }
