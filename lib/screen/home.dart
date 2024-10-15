@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:labooking_app/api/api_service.dart';
+import 'package:labooking_app/model/schedule_model.dart';
+import 'package:labooking_app/model/schedules_data_source.dart';
 import 'package:labooking_app/screen/book.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'login.dart';
@@ -15,28 +18,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Variabel berikut telah dikomentari karena tidak digunakan dalam contoh ini.
   // Mereka seharusnya digunakan untuk mengambil data jadwal dari API:
-  // List<Schedule> _schedules = [];
-  // final ApiService apiService = ApiService();
+  List<Schedule> _schedules = [];
+  final ApiService apiService = ApiService();
 
   // Metode initState dipanggil ketika widget pertama kali dibangun.
   // Biasanya digunakan untuk inisialisasi atau memuat data.
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _fetchSchedules(); // Metode untuk mengambil jadwal
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _fetchSchedules(); // Metode untuk mengambil jadwal
+  }
 
   // Metode untuk mengambil jadwal dari API
-  // Future<void> _fetchSchedules() async {
-  //   try {
-  //     List<Schedule> schedules = await apiService.fetchSchedules();
-  //     setState(() {
-  //       _schedules = schedules; // Memperbarui jadwal yang diambil dari API
-  //     });
-  //   } catch (e) {
-  //     print('Error: $e'); // Menampilkan error jika terjadi kegagalan
-  //   }
-  // }
+  Future<void> _fetchSchedules() async {
+    try {
+      List<Schedule> schedules = await apiService.fetchSchedules();
+      setState(() {
+        _schedules = schedules; // Memperbarui jadwal yang diambil dari API
+      });
+    } catch (e) {
+      print('Error: $e'); // Menampilkan error jika terjadi kegagalan
+    }
+  }
 
   // Widget build mendefinisikan UI halaman home screen.
   @override
@@ -87,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               cellBorderColor: Colors.grey.shade200, // Warna garis pembatas antar sel kalender
               // Data untuk jadwal seharusnya disediakan oleh SchedulesDataSources
-              // dataSource: SchedulesDataSources(_schedules),
+              dataSource: SchedulesDataSources(_schedules),
               monthViewSettings: MonthViewSettings(
                 appointmentDisplayMode: MonthAppointmentDisplayMode.appointment, // Menampilkan jadwal langsung di dalam kalender
                 showAgenda: true, // Menampilkan agenda di bawah kalender
