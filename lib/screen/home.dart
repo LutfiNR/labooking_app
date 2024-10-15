@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:labooking_app/screen/book.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'login.dart';
 
@@ -48,7 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: const Icon(Icons.add_circle_outline), // Tombol tambah (belum diberi fungsi)
             onPressed: () {
-              // Fungsi akan ditambahkan kemudian
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const BookingFormScreen()), // Navigasi ke halaman login
+              );
             },
           ),
           IconButton(
