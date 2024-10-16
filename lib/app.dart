@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart'; // Mengimpor paket Material Design
 import 'package:labooking_app/screen/home.dart';
-import 'package:labooking_app/screen/login.dart'; // Mengimpor layar login dari aplikasi LaBooking
 
 // Kelas utama aplikasi
 class MyApp extends StatelessWidget {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
             // Mengatur skema warna
             primary: Color.fromRGBO(230, 232, 230, 1), // Warna utama aplikasi
             secondary: Color.fromRGBO(8, 7, 8, 1), // Warna sekunder aplikasi
-            tertiary: Color.fromRGBO(244, 206, 20, 1) // Warna tersier aplikasi
+            tertiary: Color.fromRGBO(244, 177, 20, 1) // Warna tersier aplikasi
         ),
         useMaterial3: true, // Mengaktifkan penggunaan Material Design versi 3
       ),
